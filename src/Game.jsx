@@ -1,11 +1,11 @@
 import './Game.css';
 import { useState } from 'react';
 import MainMenu from './components/main_menu/MainMenu.jsx';
-import Cell from './components/UI/cell/Cell.jsx';
+import GameWindow from './components/game_window/GameWindow.jsx';
 
 function Game() {
 
-  let gState = "MAIN_MENU";
+  const [gState, setGState] = useState("MAIN_MENU");
 
   const gItems = 8;
 
@@ -19,32 +19,28 @@ function Game() {
 
   function createGridData()
   {
-    for(let r = 0; r < gItems; r++)
+    for(let rows = 0; rows < gItems; rows++)
     {
       gCells.push([]);//create an array for every row
-      for(let c = 0; c < gItems; c++);
+      for(let cols = 0; cols < gItems; cols++)
       {
-        gCells[r].push({x: r+1, y: c+1, hasBomb: false, value: 0});//create an object for every cell in the column
+        gCells[rows].push({x: rows+1, y: cols+1, hasBomb: false, value: 0});//create an object for every cell in the column
       }
     }
   }
 
-  function createGrid()
-  {
-    
-  }
-  
   function sStartGame()
   {
-    let gState = "GAME_CYCLE";
+    setGState("GAME_CYCLE");
     gStartTime = new Date();
     setGCurrentTime(gStartTime);
+    console.log("preemptive")
   }
 
   return (
     <>
-      <MainMenu gState={gState}/>
-      <div onClick={createGridData}>test</div>
+      {gState === "MAIN_MENU" && <MainMenu gStartGame={sStartGame}/>}
+      {gState === "GAME_CYCLE" && <GameWindow/>}
     </>
   )
 }

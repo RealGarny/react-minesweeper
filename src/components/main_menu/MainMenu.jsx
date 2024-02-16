@@ -1,14 +1,15 @@
 import "./MainMenu.css";
+import Button from "../UI/buttons/Button";
 
 const MainMenu = (props) =>
 {
     return(
-        <div className="m_menu" style={{display: props.gState === "MAIN_MENU"? "block" : "none"}}>
+        <div className="m_menu">
             <header>Blocky</header>
             <div className="m_menu-buttons">
-                <button>start</button>
-                <button>leaderboard</button>
-                <button>settings</button>
+                <Button action={props.gStartGame}>start</Button>
+                <Button>leaderboard</Button>
+                <Button>settings</Button>
             </div>
         </div>
     )
