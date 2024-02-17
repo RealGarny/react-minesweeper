@@ -1,5 +1,6 @@
 .m_menu
 {
+    padding-top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,8 +9,17 @@
     margin: auto;
 }
 
+header
+{
+    font-size: 3rem;
+    margin-bottom: 5rem;
+}
+
 .m_menu-buttons
 {
     display: flex;
+    gap: 2rem;
     flex-direction: column;
+    width: calc(100vw/1.5);
+    max-width: 25rem;
 }

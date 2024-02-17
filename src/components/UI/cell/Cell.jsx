@@ -6,7 +6,7 @@ const Cell = (props) =>
 
     return(
         <div className="cell">
-            something
+            {props.children}
         </div>
     )
 }

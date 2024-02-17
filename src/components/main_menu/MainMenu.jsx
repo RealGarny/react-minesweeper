@@ -1,15 +1,20 @@
 import "./MainMenu.css";
 import Button from "../UI/buttons/Button";
+import { useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import { setGameState } from "../../store/gameSlice";
 
-const MainMenu = (props) =>
+const MainMenu = () =>
 {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     return(
         <div className="m_menu">
             <header>Blocky</header>
             <div className="m_menu-buttons">
-                <Button action={props.gStartGame}>start</Button>
-                <Button>leaderboard</Button>
-                <Button>settings</Button>
+                <Button action={()=>dispatch(setGameState("SETTINGS"))}>Play</Button>
+                <Button action={()=>{navigate("/leaderboard")}}>Leaderboard</Button>
             </div>
         </div>
     )
