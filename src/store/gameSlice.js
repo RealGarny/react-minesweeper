@@ -11,7 +11,7 @@ const gameStateSlice = createSlice({
 
         gMines: 4,
 
-        gGrid: [],
+        //gGrid: [],
 
         gScore: 0,
 
@@ -23,10 +23,11 @@ const gameStateSlice = createSlice({
         {
             state.gState = action.payload;
         },
+        /*
         setGrid(state, action)
         {
             state.gGrid = action.payload;
-        },
+        },*/
         setSettings(state, action)
         {
             state.gCols = action.payload.gCols;

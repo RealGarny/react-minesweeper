@@ -1,20 +1,19 @@
 import React from "react";
 import "./Table.css";
-import {useSelector} from "react-redux";
 import Cell from "../cell/Cell.jsx";
 
 function Table(props)
 {
-  const gGrid= useSelector(state => state.game.gGrid);
 
   function gOpenCell()
     {
 
     }
 
-  function gTagCell()
+  function gRightClick(e)
   {
-
+    e.preventDefault();
+    console.log("rightClick")
   }
 
   function gStopGame()
@@ -24,7 +23,7 @@ function Table(props)
 
     return(
         <div className='gameGrid'>
-        {gGrid.map((x, xi)=>
+        {props.gGrid.map((x, xi)=>
         {
           return(
             <div key={xi}>
@@ -33,7 +32,8 @@ function Table(props)
                 return(
                 <Cell 
                   key={yi} 
-                  onClick={()=>{console.log(xi, yi)}}
+                  rightClick={gRightClick}
+                  data={{...y}}
                 >{y.hasBomb ? "x" : y.value}</Cell>)
                })
               }

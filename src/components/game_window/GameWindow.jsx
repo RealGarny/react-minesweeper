@@ -1,8 +1,7 @@
 import React from "react";
 import "./GameWindow.css"
-
-import {useSelector, useDispatch} from "react-redux";
-import { setGrid } from "../../store/gameSlice.js";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import Score from "../UI/score/Score.jsx";
 import Timer from "../UI/timer/Timer.jsx";
@@ -10,7 +9,7 @@ import Table from "../UI/table/Table.jsx";
 
 function GameWindow()
 {
-  const dispatch = useDispatch();
+  const [Grid, setGrid] = useState([]);
 
   const gCols = useSelector(state=> state.game.gCols);
   const gRows = useSelector(state=> state.game.gRows);
@@ -25,7 +24,7 @@ function GameWindow()
         tempCells.push([]);//create an array for every row
         for(let cols = 0; cols < gCols; cols++)
         {
-          tempCells[rows].push({x: rows, y: cols, hasBomb: false, value: 0});//create an object for every cell in the column
+          tempCells[rows].push({x: rows, y: cols, hasBomb: false, value: 0, isRevealed:false});//create an object for every cell in the column
         }
       }
   
@@ -60,7 +59,7 @@ function GameWindow()
           if(randomRow-1 >=0 && randomCol+1 < tempCells[randomRow-1].length){tempCells[randomRow-1][randomCol+1].value+=1}
         }
       }
-      dispatch(setGrid(tempCells))
+      setGrid(tempCells)
     }
 
     return(
@@ -68,7 +67,7 @@ function GameWindow()
             <div onClick={()=>{sCreateGrid()}}>
               <Score/>
               <Timer/>
-              <Table/>
+              <Table gGrid={Grid}/>
             </div>
         </div>
     )
