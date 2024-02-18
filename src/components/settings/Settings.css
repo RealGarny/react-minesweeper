@@ -4,7 +4,13 @@
     width: 100%;
     height: 100%;
 }
-.settings-buttons {
+.settings-buttons
+{
     display: flex;
     flex-direction: row;
+}
+
+.btn-selected
+{
+    border: 1px solid #000;
 }

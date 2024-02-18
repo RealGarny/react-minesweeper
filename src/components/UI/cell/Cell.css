@@ -1,4 +1,13 @@
 .cell
 {
+    cursor: pointer;
     border: 1px solid #000;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+
+.cell:hover
+{
+    background-color: aqua;
 }

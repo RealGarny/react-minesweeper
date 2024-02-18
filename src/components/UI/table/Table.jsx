@@ -1,18 +1,40 @@
 import React from "react";
 import "./Table.css";
+import {useSelector} from "react-redux";
 import Cell from "../cell/Cell.jsx";
 
-function Table()
+function Table(props)
 {
+  const gGrid= useSelector(state => state.game.gGrid);
+
+  function gOpenCell()
+    {
+
+    }
+
+  function gTagCell()
+  {
+
+  }
+
+  function gStopGame()
+  {
+    
+  }
+
     return(
         <div className='gameGrid'>
-        {gCells.map((row, rowi)=>
+        {gGrid.map((x, xi)=>
         {
           return(
-            <div key={rowi}>
+            <div key={xi}>
               {
-               row.map((col, coli)=>{
-                return(<div key={coli}></div>)
+               x.map((y, yi)=>{
+                return(
+                <Cell 
+                  key={yi} 
+                  onClick={()=>{console.log(xi, yi)}}
+                >{y.hasBomb ? "x" : y.value}</Cell>)
                })
               }
             </div>

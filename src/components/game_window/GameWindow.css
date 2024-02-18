@@ -1,0 +1,8 @@
+.game_window-wrapper
+{
+    display: flex;
+    height: 80vh;
+    width: 100vw;
+    justify-content: center;
+    margin-top: 20vh;
+}

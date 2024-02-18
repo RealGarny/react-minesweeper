@@ -4,7 +4,7 @@ import "./Timer.css";
 
 function Timer()
 {
-
+    /*
     const [time, setTime] = useState(0)
 
     useEffect(() => {
@@ -12,10 +12,10 @@ function Timer()
         setTime(Date.now())
         }, 1000);
     });
-
+    */
     return(
         <div>
-            {time}
+            time
         </div>
     )
 }

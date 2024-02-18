@@ -5,7 +5,7 @@ const Cell = (props) =>
 {
 
     return(
-        <div className="cell">
+        <div className="cell" onClick={props.onClick}>
             {props.children}
         </div>
     )
