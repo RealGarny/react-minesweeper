@@ -23,3 +23,12 @@ header
     width: calc(100vw/1.5);
     max-width: 25rem;
 }
+.leaderboard_icon
+{
+    height: 5vw;
+    width: 5vw;
+    filter: invert(87%) sepia(90%) saturate(0%) hue-rotate(261deg) brightness(111%) contrast(97%);
+
+    max-width: 40px;
+    max-height: 40px;
+}

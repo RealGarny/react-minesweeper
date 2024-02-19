@@ -14,7 +14,10 @@ const MainMenu = () =>
             <header>Blocky</header>
             <div className="m_menu-buttons">
                 <Button action={()=>dispatch(setGameState("SETTINGS"))}>Play</Button>
-                <Button action={()=>{navigate("/leaderboard")}}>Leaderboard</Button>
+                <Button action={()=>{navigate("/leaderboard")}} >
+                    <img alt="leaderboard" className="leaderboard_icon" src="./assets/leaderboard_icon.svg"/>
+                    Leaderboard
+                </Button>
             </div>
         </div>
     )
