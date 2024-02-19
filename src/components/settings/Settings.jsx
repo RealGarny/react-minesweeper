@@ -25,7 +25,7 @@ function Settings() {
                 dispatch(setSettings({gCols: 16, gRows: 16, gMines: 40}));
                 break;
             case "Hard":
-                dispatch(setSettings({gCols: 16, gRows: 32, gMines: 100}));
+                dispatch(setSettings({gCols: 32, gRows: 16, gMines: 100}));
                 break;
         }
     }
