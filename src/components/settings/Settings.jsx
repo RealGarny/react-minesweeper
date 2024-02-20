@@ -1,17 +1,17 @@
 import React from "react";
 import "./Settings.css";
 import {useDispatch} from "react-redux";
-import { setGameState, setSettings } from "../../store/gameSlice";
+import { setMenuState, setSettings } from "../../store/gameSlice";
 import { useState } from "react";
 import Button from "../UI/buttons/Button";
 
 function Settings() {
     const dispatch = useDispatch();
-    const [dificulty, setDificulty] = useState("Easy");
+    const [dificulty, setDificulty] = useState("Normal");
 
     const openGameWindow = () =>
     {
-        dispatch(setGameState("GAME_CYCLE"));
+        dispatch(setMenuState("GAME"));
         dispatchSettings();
     }
 
@@ -35,13 +35,13 @@ function Settings() {
             <div className="settings-wrapper">
                 <h1 className="settings-header">Settings</h1>
                 <div>
-                    <Button className={`button_switch ${dificulty === "Easy" ? "btn-selected fs-5" : ""}`} action={()=>{setDificulty("Easy")}}>Easy</Button>
-                    <Button className={`button_switch ${dificulty === "Normal" ? "btn-selected fs-5" : ""}`} action={()=>{setDificulty("Normal")}}>Normal</Button>
-                    <Button className={`button_switch ${dificulty === "Hard" ? "btn-selected fs-5" : ""}`} action={()=>{setDificulty("Hard")}}>Hard</Button>
+                    <Button className={`btn-switch ${dificulty === "Easy" ? "btn-selected" : ""}`} action={()=>{setDificulty("Easy")}}>Easy</Button>
+                    <Button className={`btn-switch ${dificulty === "Normal" ? "btn-selected" : ""}`} action={()=>{setDificulty("Normal")}}>Normal</Button>
+                    <Button className={`btn-switch ${dificulty === "Hard" ? "btn-selected" : ""}`} action={()=>{setDificulty("Hard")}}>Hard</Button>
                 </div>
                 <div className="settings-buttons">
                     <Button action={openGameWindow}>Start</Button>
-                    <Button action={()=>dispatch(setGameState("MAIN_MENU"))}>Menu</Button>
+                    <Button action={()=>dispatch(setMenuState("MAIN_MENU"))}>Menu</Button>
                 </div>
             </div>
         </div>

@@ -3,9 +3,10 @@ import "./Table.css";
 import Cell from "../cell/Cell.jsx";
 import { openNearbyCells } from "../../../../utils/game.js";
 
+const flagCount = 0;
+
 function Table(props)
 {
-  let flagCount = 0;
   function checkWin()
   {
     if(props.noMines === 0)
@@ -22,9 +23,7 @@ function Table(props)
       if(currCell.flag === 0 && !currCell.isRevealed)
       {
         currCell.isRevealed = true;
-        props.setNoMines();
-        console.log(props.noMines)
-        
+        props.setNoMines();     
 
         if(!currCell.hasBomb && currCell.value === 0)
         {
@@ -50,6 +49,12 @@ function Table(props)
     if(currCell.flag != 2)
     {
       currCell.flag += 1;
+      if(currCell.flag == 1)
+      {
+        props.setGScore(p=> p = p - 1)
+      }else if(currCell.flag == 2){
+        props.setGScore(p=> p = p + 1)
+      }
     }
     else
     {

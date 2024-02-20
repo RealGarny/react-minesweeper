@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const gameStateSlice = createSlice({
     name: 'Game',
     initialState:{
-        gState: "MAIN_MENU",
+        mState: "MAIN_MENU",
 
         gCols: 8,
         gRows: 8,
@@ -16,9 +16,9 @@ const gameStateSlice = createSlice({
 
     },
     reducers: {
-        setGameState(state, action)
+        setMenuState(state, action)
         {
-            state.gState = action.payload;
+            state.mState = action.payload;
         },
         setSettings(state, action)
         {
@@ -34,6 +34,6 @@ const gameStateSlice = createSlice({
 
 })
 
-export const {setGameState, setGrid, setSettings, setScore, updateTimer} = gameStateSlice.actions;
+export const {setMenuState, setGrid, setSettings, setScore, updateTimer} = gameStateSlice.actions;
 
 export default gameStateSlice.reducer;

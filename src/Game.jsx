@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 
 function Game() {
-  const gState = useSelector(state=> state.game.gState);
+  const gState = useSelector(state=> state.game.mState);
 
   return (
     <Routes>
@@ -16,7 +16,7 @@ function Game() {
         <>
           {gState === "MAIN_MENU" && <MainMenu/>}
           {gState === "SETTINGS" && <Settings/>}
-          {gState === "GAME_CYCLE" && <GameWindow/>}
+          {gState === "GAME" && <GameWindow/>}
         </>
       } />
       <Route path="/leaderboard" element={<Leaderboard/>}/>

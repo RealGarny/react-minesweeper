@@ -3,7 +3,7 @@ import "./GameWindow.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setGameState } from "../../store/gameSlice.js";
+import { setMenuState } from "../../store/gameSlice.js";
 import { sCreateGrid } from "../../../utils/game.js";
 
 import Score from "../UI/score/Score.jsx";
@@ -18,27 +18,48 @@ function GameWindow()
 
   const [Grid, setGrid] = useState([]);
 
+  const [isRunning, setIsRunning] = useState(false);
   const gCols = useSelector(state=> state.game.gCols);
   const gRows = useSelector(state=> state.game.gRows);
   const gMines = useSelector(state=> state.game.gMines);
   const [gScore, setGScore] = useState(gMines);
+  const [gTime, setGTime] = useState(0);
 
   const [noMines,setNoMines] = useState(gCols * gRows - gMines);
 
   useState(()=>{
     setGrid(sCreateGrid(gCols,gRows,gMines))
-    console.log(gMines)
   },[])
+
+  function startGame()
+  {
+    setIsRunning(true);
+  }
+
+  function restartGame()
+  {
+    setIsRunning(false);
+    setGScore(gMines);
+    setGTime(0);
+    gStartTime = 0;
+    setGrid(sCreateGrid(gCols,gRows,gMines));
+  }
 
     return(
         <div className="window-wrapper">
             <div className="game_window-nav">
-              <Button action={()=>dispatch(setGameState("SETTINGS"))} className="game_window-nav_button">settings</Button>
+              <Button action={()=>dispatch(setMenuState("SETTINGS"))} className="game_window-nav_button">settings</Button>
               <Button action={()=>{navigate("/leaderboard")}} className="game_window-nav_button">leaderboard</Button>
             </div>
             <div className="game_window-wrapper">
-              <Score score={gScore}/>
-              <Timer/>
+              <Score
+               score={gScore}
+              />
+              <Timer
+                isRunning={isRunning}
+                time={gTime}
+                setGTime={setGTime}
+              />
               <Table
                 gGrid={Grid}
                 setGrid={setGrid}
