@@ -1,6 +1,6 @@
 export function createLocalStorage()
 {
-    localStorage.setItem("leaderboard", {
+    localStorage.setItem("leaderboard", JSON.stringify({
         hard: {
             players:[]
         },
@@ -10,7 +10,7 @@ export function createLocalStorage()
         easy: {
             players:[]
         },
-    });
+    }));
 }
 //needs to be implemented
 export function addToLocalStorage(player, difficulty, time)

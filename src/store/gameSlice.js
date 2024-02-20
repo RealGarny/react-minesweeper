@@ -9,11 +9,6 @@ const gameStateSlice = createSlice({
         gRows: 8,
 
         gMines: 4,
-
-        gScore: 0,
-
-        gRemainingTime: undefined,
-
     },
     reducers: {
         setMenuState(state, action)
@@ -26,14 +21,10 @@ const gameStateSlice = createSlice({
             state.gRows = action.payload.gRows;
             state.gMines = action.payload.gMines;
         },
-        setScore(state, action)
-        {
-            state.gScore = action.payload;
-        },
     }
 
 })
 
-export const {setMenuState, setGrid, setSettings, setScore, updateTimer} = gameStateSlice.actions;
+export const {setMenuState, setSettings} = gameStateSlice.actions;
 
 export default gameStateSlice.reducer;
