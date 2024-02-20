@@ -14,7 +14,7 @@ export function sCreateGrid(gRows, gCols, gMines)
   //generating mines
   for(let i = 0; i < gMines; i++)
   {
-    const randomRow = Math.floor(Math.random() * gRows);
+    const randomRow = Math.floor(Math.random() * gRows);//umable to generate 6,7,8 mines around the tile for some reason
     const randomCol = Math.floor(Math.random() * gCols);
 
     const cell = tempCells[randomRow][randomCol];

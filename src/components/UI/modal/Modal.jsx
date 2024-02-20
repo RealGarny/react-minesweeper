@@ -5,7 +5,7 @@ export default function Modal(props)
 {
     return(
         <div className="modal">
-            <div modal--content>
+            <div className="modal--content">
                 {props.children}
             </div>
         </div>

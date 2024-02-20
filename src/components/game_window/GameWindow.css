@@ -22,9 +22,25 @@
     padding-right: 1rem;
 }
 
-.game_window-nav_button
+.game_window-stats
 {
-    cursor: pointer;
-    border: 2px solid #000;
-    padding: .5rem .2rem;
+    justify-content: center;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media(max-width:290px) {
+    .game_window-nav
+    {
+        font-size: 10px;
+        gap: 10px;
+    }
+    .game_window-stats
+    {
+        font-size: 12px;
+        flex-direction: column;
+        gap:1rem;
+        padding-left: 2rem;
+    }
 }

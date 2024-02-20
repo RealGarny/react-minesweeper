@@ -2,13 +2,97 @@
 {
     position: absolute;
     z-index: 10;
+    top:0;
+    left:0;
     width: 100vw;
     height: 100vh;
+    background-color: rgba(0,0,0,25%);
 
     display: flex;
     justify-content: center;
 }
 
 .modal--content{
+    height:fit-content;
+    background-color: #fff;
+    border: 3px solid #000;
+    margin: auto .5rem;
     padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-nav-buttons-wrapper
+{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+
+    flex-wrap: wrap;
+}
+
+.modal-header
+{
+    text-align: center;
+}
+.modal-subtext
+{
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 2rem;
+    position: relative;
+    top: -.5rem; /* This will move it 20px up */
+}
+
+.modal-nav-buttons-wrapper div
+{
+    text-align: center;
+    min-width: 6rem;
+}
+
+@media(max-width:275px)
+{
+    .modal-subtext
+    {
+        width: 160px;
+    }
+}
+
+/*needs to be removed later*/
+.form-items-wrapper
+{
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-form_input
+{
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 25%);
+}
+
+.modal-form_input input
+{
+    padding-left: 3px;
+    width: calc(100%-3px);
+    height: 100%;
+}
+
+.form-items-wrapper button
+{
+    padding: 0.5rem 1rem;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal-form_input-label
+{
+    position: absolute;
+    left: 3px;
+    top: .4rem;
+    color:rgba(0, 0, 0, 25%);
+    pointer-events:none;
 }

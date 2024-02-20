@@ -19,11 +19,12 @@ function GameWindow()
   const [Grid, setGrid] = useState([]);
 
   const [isRunning, setIsRunning] = useState(false);
+  const [gTime, setGTime] = useState(0);
   const gCols = useSelector(state=> state.game.gCols);
   const gRows = useSelector(state=> state.game.gRows);
   const gMines = useSelector(state=> state.game.gMines);
   const [gScore, setGScore] = useState(gMines);
-  const [gTime, setGTime] = useState(0);
+  const [openCells, setOpenCells] = useState(0);
 
   const [noMines,setNoMines] = useState(gCols * gRows - gMines);
 
@@ -36,12 +37,17 @@ function GameWindow()
     setIsRunning(true);
   }
 
-  function restartGame()
+  function endGame()
   {
     setIsRunning(false);
+  }
+
+  function restartGame()
+  {
+    setOpenCells(0);
+    setNoMines(gCols * gRows - gMines);
+    setIsRunning(false);
     setGScore(gMines);
-    setGTime(0);
-    gStartTime = 0;
     setGrid(sCreateGrid(gCols,gRows,gMines));
   }
 
@@ -52,21 +58,31 @@ function GameWindow()
               <Button action={()=>{navigate("/leaderboard")}} className="game_window-nav_button">leaderboard</Button>
             </div>
             <div className="game_window-wrapper">
-              <Score
-               score={gScore}
-              />
-              <Timer
-                isRunning={isRunning}
-                time={gTime}
-                setGTime={setGTime}
-              />
+              <div className="game_window-stats">
+                <Score
+                  score={gScore}
+                />
+                <Timer
+                  isRunning={isRunning}
+                  openCells={openCells}
+                  gTime={gTime}
+                  setGTime={setGTime}
+                />
+              </div>
               <Table
                 gGrid={Grid}
+                isRunning={isRunning}
+                openCells={openCells}
+                setOpenCells={setOpenCells}
                 setGrid={setGrid}
                 noMines={noMines}
-                setNoMines={()=>{setNoMines((p)=>p-=1)}}
+                setNoMines={()=>{setNoMines((p)=>p= p - 1)}}
                 gMines={gMines}
+                gTime={gTime}
                 setGScore={setGScore}
+                endGame={endGame}
+                restartGame={restartGame}
+                startGame={startGame}
               />
             </div>
         </div>

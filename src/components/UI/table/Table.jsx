@@ -1,29 +1,39 @@
 import React from "react";
 import "./Table.css";
+import { useState } from "react";
+import {useDispatch} from "react-redux";
+import { setMenuState } from "../../../store/gameSlice.js";
 import Cell from "../cell/Cell.jsx";
+import Modal from "../modal/Modal.jsx";
+import Button from "../buttons/Button.jsx";
 import { openNearbyCells } from "../../../../utils/game.js";
-
-const flagCount = 0;
 
 function Table(props)
 {
-  function checkWin()
-  {
-    if(props.noMines === 0)
-    {
-      gState("GAME_WON")
-    }
-  }
-  checkWin()
+  const dispatch = useDispatch();
+  const [revealModal,setRevealModal] = useState(false);
+  const [username,setUsername] = useState("");
+  const [gameStatus, setGameStatus] = useState()
+
   function gOpenCell(cell)
     {
+      if(props.noMines === 1)
+      {
+        gState("GAME_WON")
+      }
       let tempTable = JSON.parse(JSON.stringify(props.gGrid));
       let currCell = tempTable[cell.x][cell.y];
+
+      if( props.openCells === 0 )
+      {
+        props.startGame();
+      }
 
       if(currCell.flag === 0 && !currCell.isRevealed)
       {
         currCell.isRevealed = true;
-        props.setNoMines();     
+        props.setNoMines();    
+        props.setOpenCells(p => p+1);
 
         if(!currCell.hasBomb && currCell.value === 0)
         {
@@ -46,7 +56,7 @@ function Table(props)
     let tempTable = JSON.parse(JSON.stringify(props.gGrid));
     let currCell = tempTable[gRow][gCol];
     //changing the flag id
-    if(currCell.flag != 2)
+    if(currCell.flag != 2 && props.isRunning)
     {
       currCell.flag += 1;
       if(currCell.flag == 1)
@@ -69,42 +79,93 @@ function Table(props)
     switch(n)
     {
       case "GAME_LOST":
-        console.log("game over.");
+        props.endGame();
+        setRevealModal(true);
+        setGameStatus("GAME_OVER");
         break;
+
       case "GAME_WON":
-        console.log("you win.");
+        props.endGame();
+        setRevealModal(true);
+        setGameStatus("GAME_WON");
         break;
+
       case "GAME_RESTART":
-        console.log("restarting");
+        props.restartGame();
         break;
+
       case "GAME_START":
-        console.log("starting");
+        props.startGame();
+        setGameStatus("GAME_START");
         break;
     }
   }
 
+  function handleInput(e)
+  {
+    setUsername(e.target.value);
+    console.log(username)
+  }
+  function handleSubmit(e)
+  {
+    e.preventDefault();
+    setUsername("");
+    setRevealModal(false);
+  }
+
     return(
-        <div className='gameGrid'>
-        {props.gGrid.map((x, xi)=>
+      <>
         {
-          return(
-            <div key={xi}>
-              {
-               x.map((y, yi)=>{
-                return(
-                <Cell 
-                  key={yi}
-                  leftClick={gOpenCell}
-                  rightClick={gRightClick}
-                  table={props.gGrid}
-                  data={{...y}}
-                >{y.hasBomb ? "x" : y.value}</Cell>)
-               })
-              }
+        revealModal &&
+        <Modal>
+          {gameStatus == "GAME_WON"?
+          <>
+            <div className="h1 modal-header">YOU WIN!</div>
+            <div className="modal-subtext">Your time: {props.gTime}s.</div>
+            <form onSubmit={handleSubmit}>
+              <div className="form-items-wrapper">
+                <div className="modal-form_input">
+                  {username === "" && <label className="modal-form_input-label">type your nickname</label>}
+                  <input type="text" value={username} onChange={handleInput}/>
+                </div>
+                <button>send</button>
+              </div>
+            </form>
+          </>
+          :
+           <>
+            <div className="h1 modal-header">GAME OVER</div>
+            <div className="modal-subtext">better luck next time</div>
+            <div className="modal-nav-buttons-wrapper">
+              <Button className="game_window-nav_button" action={()=>{setRevealModal(false);gState("GAME_RESTART")}}>Restart</Button>
+              <Button className="game_window-nav_button" action={()=>{setRevealModal(false);dispatch(setMenuState("MAIN_MENU"))}}>Menu</Button>
             </div>
-          )
-        })}
-      </div>
+          </>
+          }
+        </Modal>
+        }
+        <div className='gameGrid'>
+          {props.gGrid.map((x, xi)=>
+          {
+            return(
+              <div key={xi}>
+                {
+                  x.map((y, yi)=>{
+                  return(
+                  <Cell 
+                    key={yi}
+                    leftClick={gOpenCell}
+                    rightClick={gRightClick}
+                    table={props.gGrid}
+                    data={{...y}}
+                  >{y.hasBomb ? "x" : y.value}</Cell>)
+                  })
+                }
+              </div>
+            )
+          })}
+        </div>
+      </>
     )
 }
 

@@ -1,6 +1,24 @@
-body
+body, input, button
 {
     margin: 0;
     padding: 0;
     font-family: "Silkscreen", sans-serif;
+}
+
+input, button
+{
+    all: unset;
+}
+
+.game_window-nav_button
+{
+    cursor: pointer;
+    border: 2px solid #000;
+    padding: .5rem .2rem;
+}
+
+.h1
+{
+    font-weight: bold;
+    font-size: 2rem;
 }
