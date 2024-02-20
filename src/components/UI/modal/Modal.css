@@ -1,0 +1,14 @@
+.modal
+{
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.modal--content{
+    padding: 1rem 0.5rem;
+}

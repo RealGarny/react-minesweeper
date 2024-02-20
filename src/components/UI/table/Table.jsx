@@ -5,23 +5,37 @@ import { openNearbyCells } from "../../../../utils/game.js";
 
 function Table(props)
 {
-
+  let flagCount = 0;
+  function checkWin()
+  {
+    if(props.noMines === 0)
+    {
+      gState("GAME_WON")
+    }
+  }
+  checkWin()
   function gOpenCell(cell)
     {
       let tempTable = JSON.parse(JSON.stringify(props.gGrid));
       let currCell = tempTable[cell.x][cell.y];
-      
+
       if(currCell.flag === 0 && !currCell.isRevealed)
       {
         currCell.isRevealed = true;
+        props.setNoMines();
+        console.log(props.noMines)
         
 
         if(!currCell.hasBomb && currCell.value === 0)
         {
           //openNearbyCells(currCell, gOpenCell, tempTable);
-          gOpenCell(tempTable[currCell.x+1][currCell.y+1])
-          console.log(tempTable[currCell.x+1][currCell.y+1])
+          //gOpenCell(tempTable[currCell.x+1][currCell.y+1])
         }
+        if(currCell.hasBomb)
+        {
+          gState("GAME_LOST");
+        }
+
       }
       props.setGrid(tempTable);
     }
@@ -32,7 +46,6 @@ function Table(props)
 
     let tempTable = JSON.parse(JSON.stringify(props.gGrid));
     let currCell = tempTable[gRow][gCol];
-
     //changing the flag id
     if(currCell.flag != 2)
     {
@@ -42,12 +55,27 @@ function Table(props)
     {
       currCell.flag = 0;
     }
+    //props.setGScore(props.gMines - flagsNum);
     props.setGrid(tempTable);
   }
 
-  function gStopGame()
+  function gState(n)
   {
-    
+    switch(n)
+    {
+      case "GAME_LOST":
+        console.log("game over.");
+        break;
+      case "GAME_WON":
+        console.log("you win.");
+        break;
+      case "GAME_RESTART":
+        console.log("restarting");
+        break;
+      case "GAME_START":
+        console.log("starting");
+        break;
+    }
   }
 
     return(

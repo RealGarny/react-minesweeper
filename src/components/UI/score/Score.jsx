@@ -1,11 +1,11 @@
 import React from "react";
 import "./Score.css";
 
-function Score()
+function Score(props)
 {
     return(
         <div>
-            Score
+            Score: {props.score}
         </div>
     )
 }
