@@ -27,6 +27,7 @@
 
 .btn-switch
 {
+    cursor: pointer;
     text-align: center;
 }
 

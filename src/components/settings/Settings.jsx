@@ -7,7 +7,7 @@ import Button from "../UI/buttons/Button";
 
 function Settings() {
     const dispatch = useDispatch();
-    const [dificulty, setDificulty] = useState("Normal");
+    const [dificulty, setDificulty] = useState("normal");
 
     const openGameWindow = () =>
     {
@@ -18,14 +18,14 @@ function Settings() {
     const dispatchSettings = () =>
     {
         switch(dificulty){
-            case "Easy":
-                dispatch(setSettings({gCols: 3, gRows: 3, gMines: 1}));
+            case "easy":
+                dispatch(setSettings({gCols: 8, gRows: 8, gMines: 10, gDifficulty: "easy"}));
                 break;
-            case "Normal":
-                dispatch(setSettings({gCols: 16, gRows: 16, gMines: 40}));
+            case "normal":
+                dispatch(setSettings({gCols: 16, gRows: 16, gMines: 40, gDifficulty: "normal"}));
                 break;
-            case "Hard":
-                dispatch(setSettings({gCols: 32, gRows: 16, gMines: 100}));
+            case "hard":
+                dispatch(setSettings({gCols: 32, gRows: 16, gMines: 100, gDifficulty: "hard"}));
                 break;
         }
     }
@@ -35,9 +35,9 @@ function Settings() {
             <div className="settings-wrapper">
                 <h1 className="settings-header">Settings</h1>
                 <div>
-                    <Button className={`btn-switch ${dificulty === "Easy" ? "btn-selected" : ""}`} action={()=>{setDificulty("Easy")}}>Easy</Button>
-                    <Button className={`btn-switch ${dificulty === "Normal" ? "btn-selected" : ""}`} action={()=>{setDificulty("Normal")}}>Normal</Button>
-                    <Button className={`btn-switch ${dificulty === "Hard" ? "btn-selected" : ""}`} action={()=>{setDificulty("Hard")}}>Hard</Button>
+                    <Button className={`btn-switch ${dificulty === "easy" ? "btn-selected" : ""}`} action={()=>{setDificulty("easy")}}>Easy</Button>
+                    <Button className={`btn-switch ${dificulty === "normal" ? "btn-selected" : ""}`} action={()=>{setDificulty("normal")}}>Normal</Button>
+                    <Button className={`btn-switch ${dificulty === "hard" ? "btn-selected" : ""}`} action={()=>{setDificulty("hard")}}>Hard</Button>
                 </div>
                 <div className="settings-buttons">
                     <Button action={openGameWindow}>Start</Button>

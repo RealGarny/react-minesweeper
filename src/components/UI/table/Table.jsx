@@ -2,7 +2,10 @@ import React from "react";
 import "./Table.css";
 import { useState } from "react";
 import {useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
+
 import { setMenuState } from "../../../store/gameSlice.js";
+import { addToLocalStorage } from "../../../../utils/localstorage.js";
 import Cell from "../cell/Cell.jsx";
 import Modal from "../modal/Modal.jsx";
 import Button from "../buttons/Button.jsx";
@@ -13,7 +16,8 @@ function Table(props)
   const dispatch = useDispatch();
   const [revealModal,setRevealModal] = useState(false);
   const [username,setUsername] = useState("");
-  const [gameStatus, setGameStatus] = useState()
+  const [gameStatus, setGameStatus] = useState();
+  const gDifficulty = useSelector(state => state.game.gDifficulty)
 
   function gOpenCell(cell)
     {
@@ -37,7 +41,11 @@ function Table(props)
 
         if(!currCell.hasBomb && currCell.value === 0)
         {
-          //openNearbyCells(currCell, gOpenCell, tempTable);
+          let adjacent = openNearbyCells(currCell, tempTable);
+          console.log(adjacent)
+          adjacent.forEach(element => {
+            element.isRevealed=true;
+          });
           //gOpenCell(tempTable[currCell.x+1][currCell.y+1])
         }
         if(currCell.hasBomb)
@@ -109,8 +117,10 @@ function Table(props)
   function handleSubmit(e)
   {
     e.preventDefault();
+    addToLocalStorage(username, gDifficulty, props.gTime)
     setUsername("");
     setRevealModal(false);
+    props.restartGame();
   }
 
     return(

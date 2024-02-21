@@ -45,7 +45,7 @@ export function sCreateGrid(gRows, gCols, gMines)
   return(tempCells)
 }
 
-export function openNearbyCells(cell, open, table)
+export function openNearbyCells(cell, /*open,*/ gGrid)
 {
     let nearbyCells = [];
     //linear

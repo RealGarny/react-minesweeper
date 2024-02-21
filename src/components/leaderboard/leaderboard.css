@@ -1,0 +1,15 @@
+.leaderboard
+{
+    margin: 0 33vw;
+}
+
+.leaderboard_flex
+{
+    display: flex;
+    gap:2rem;
+}
+
+.leaderboard_flex div
+{
+    width: -webkit-fill-available;
+}

@@ -5,6 +5,8 @@ const gameStateSlice = createSlice({
     initialState:{
         mState: "MAIN_MENU",
 
+        gDifficulty: "normal",
+
         gCols: 8,
         gRows: 8,
 
@@ -20,6 +22,7 @@ const gameStateSlice = createSlice({
             state.gCols = action.payload.gCols;
             state.gRows = action.payload.gRows;
             state.gMines = action.payload.gMines;
+            state.gDifficulty = action.payload.gDifficulty;
         },
     }
 
