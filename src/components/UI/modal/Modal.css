@@ -75,7 +75,7 @@
 .modal-form_input input
 {
     padding-left: 3px;
-    width: calc(100%-3px);
+    width: calc(100% - 3px);
     height: 100%;
 }
 
