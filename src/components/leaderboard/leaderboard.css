@@ -10,7 +10,7 @@
 
 .leaderboard-wrapper
 {
-    max-width: 50vw;
+    max-width: 60vw;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -19,10 +19,16 @@
 .leaderboard_flex
 {
     display: flex;
-    gap:2rem;
+    justify-content: space-between;
 }
 
 .leaderboard_flex div
 {
-    width: -webkit-fill-available;
+    width: 100%;
+}
+
+.leaderboard_flex div:not(:first-child):not(:last-child)
+{
+    border-right-style: none;
+    border-left-style: none;
 }

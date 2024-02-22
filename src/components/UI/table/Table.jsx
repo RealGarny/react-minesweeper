@@ -165,26 +165,28 @@ function Table(props)
           }
         </Modal>
         }
-        <div className='gameGrid'>
-          {props.gGrid.map((x, xi)=>
-          {
-            return(
-              <div key={xi}>
-                {
-                  x.map((y, yi)=>{
-                  return(
-                  <Cell 
-                    key={yi}
-                    leftClick={gLeftClick}
-                    rightClick={gRightClick}
-                    table={props.gGrid}
-                    data={{...y}}
-                  >{y.hasBomb ? "x" : y.value}</Cell>)
-                  })
-                }
-              </div>
-            )
-          })}
+        <div className="gameGrid-wrapper">
+          <div className='gameGrid'>
+            {props.gGrid.map((x, xi)=>
+            {
+              return(
+                <div key={xi}>
+                  {
+                    x.map((y, yi)=>{
+                    return(
+                    <Cell 
+                      key={yi}
+                      leftClick={gLeftClick}
+                      rightClick={gRightClick}
+                      table={props.gGrid}
+                      data={{...y}}
+                    >{y.hasBomb ? "x" : y.value}</Cell>)
+                    })
+                  }
+                </div>
+              )
+            })}
+          </div>
         </div>
       </>
     )

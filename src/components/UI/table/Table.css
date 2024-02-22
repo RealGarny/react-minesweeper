@@ -1,4 +1,12 @@
+.gameGrid-wrapper
+{
+    width: 80vw;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow: scroll;
+}
+
 .gameGrid
 {
-    justify-content: center;
+    display: flex;
 }
