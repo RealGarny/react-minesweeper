@@ -19,13 +19,12 @@ function Table(props)
   const [gameStatus, setGameStatus] = useState();
   const gDifficulty = useSelector(state => state.game.gDifficulty)
 
-  function gOpenCell(cell)
+  function gOpenCell(cell, tempTable)
     {
       if(props.noMines === 1)
       {
         gState("GAME_WON")
       }
-      let tempTable = JSON.parse(JSON.stringify(props.gGrid));
       let currCell = tempTable[cell.x][cell.y];
 
       if( props.openCells === 0 )
@@ -42,9 +41,13 @@ function Table(props)
         if(!currCell.hasBomb && currCell.value === 0)
         {
           let adjacent = openNearbyCells(currCell, tempTable);
-          console.log(adjacent)
+
           adjacent.forEach(element => {
-            element.isRevealed=true;
+            if(element.flag === 0)
+            {
+              gOpenCell(element, tempTable);
+            }
+
           });
           //gOpenCell(tempTable[currCell.x+1][currCell.y+1])
         }
@@ -54,8 +57,16 @@ function Table(props)
         }
 
       }
-      props.setGrid(tempTable);
+      return tempTable
     }
+
+  function gLeftClick(e, cell)
+  {
+    let tempTable = gOpenCell(cell, JSON.parse(JSON.stringify(props.gGrid)));
+    
+
+    props.setGrid(tempTable);
+  }
 
   function gRightClick(e, gRow, gCol)
   {
@@ -164,7 +175,7 @@ function Table(props)
                   return(
                   <Cell 
                     key={yi}
-                    leftClick={gOpenCell}
+                    leftClick={gLeftClick}
                     rightClick={gRightClick}
                     table={props.gGrid}
                     data={{...y}}

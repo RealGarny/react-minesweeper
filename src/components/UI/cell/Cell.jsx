@@ -15,7 +15,7 @@ const Cell = (props) =>
         <div
             className="cell"
             style={cellData.isRevealed && !cellData.hasBomb ? style : {}}
-            onClick={(e)=>{props.leftClick(cellData)}}
+            onClick={(e)=>{props.leftClick(e, cellData)}}
             onContextMenu={(e)=>{props.rightClick(e, cellData.x, cellData.y)}}
         >
             {cellData.isRevealed ? props.children : ""}
