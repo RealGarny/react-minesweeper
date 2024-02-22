@@ -10,7 +10,8 @@
 
 .leaderboard-wrapper
 {
-    max-width: 60vw;
+    min-width: 310px;
+    max-width: 70vw;
     display: flex;
     flex-direction: column;
     gap: 1rem;
