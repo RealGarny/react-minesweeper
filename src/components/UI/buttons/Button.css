@@ -6,6 +6,7 @@
     padding: 2rem 1rem;
     font-size: 5vw;
     background-color: #8a2be2;
+    flex-basis: 25%;
     color: #fff;
     cursor: pointer;
     
