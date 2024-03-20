@@ -10,6 +10,7 @@ import Score from "../UI/score/Score.jsx";
 import Timer from "../UI/timer/Timer.jsx";
 import Table from "../UI/table/Table.jsx";
 import Button from "../UI/buttons/Button.jsx";
+import { $leaderboard } from "../../../utils/httpPaths.js";
 
 function GameWindow()
 {
@@ -55,7 +56,7 @@ function GameWindow()
         <div className="window-wrapper">
             <div className="game_window-nav">
               <Button action={()=>dispatch(setMenuState("SETTINGS"))} className="game_window-nav_button">settings</Button>
-              <Button action={()=>{navigate("/leaderboard")}} className="game_window-nav_button">leaderboard</Button>
+              <Button action={()=>{navigate($leaderboard)}} className="game_window-nav_button">leaderboard</Button>
             </div>
             <div className="game_window-wrapper">
               <div className="game_window-stats">

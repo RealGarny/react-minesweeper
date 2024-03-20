@@ -6,6 +6,7 @@ import { createLocalStorage } from "../../../utils/localstorage";
 import { useEffect, useState } from "react";
 import Button from "../UI/buttons/Button";
 import { useNavigate } from "react-router-dom";
+import { $baseURL } from "../../../utils/httpPaths";
 
 export default function Leaderboard()
 {
@@ -17,12 +18,9 @@ export default function Leaderboard()
         {
             createLocalStorage();
         }
-        console.log("created")
         dispatch(setLeadreboard(JSON.parse(localStorage.getItem("leaderboard"))));
     }
-    
     const leaderboard = useSelector(state=>state.leaderboard.leaderboard);
-    console.log(leaderboard)
     const [displayLeaderboard, setDisplayLeaderboard] = useState("easy");
     const navigate = useNavigate();
 
@@ -56,7 +54,7 @@ export default function Leaderboard()
                         )
                     })}
                 </div>
-                <Button action={()=>{navigate("/")}}>back</Button>
+                <Button action={()=>{navigate($baseURL)}}>back</Button>
             </div>
         </div>
     )

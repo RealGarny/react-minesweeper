@@ -4,8 +4,8 @@ import GameWindow from './components/game_window/GameWindow.jsx';
 import Settings from './components/settings/Settings.jsx';
 
 import { Routes, Route} from 'react-router-dom';
+import { $baseURL, $leaderboard } from '../utils/httpPaths.js';
 import {useSelector} from "react-redux";
-import { useDispatch } from 'react-redux';
 import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 
 function Game() {
@@ -13,14 +13,14 @@ function Game() {
 
   return (
     <Routes>
-      <Route path="/" element={
+      <Route path={$baseURL} element={
         <>
           {gState === "MAIN_MENU" && <MainMenu/>}
           {gState === "SETTINGS" && <Settings/>}
           {gState === "GAME" && <GameWindow/>}
         </>
       } />
-      <Route path="/leaderboard" element={<Leaderboard/>}/>
+      <Route path={$leaderboard} element={<Leaderboard/>}/>
     </Routes>
   )
 }
